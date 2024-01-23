@@ -1,0 +1,82 @@
+<h1>Template Driven Forms Validation in Angular 17 Example </h1>
+
+<form  #templateForm="ngForm" (ngSubmit)="submit(templateForm.value)">
+    <!-- NAME -->
+    <div>
+      <label>Name</label>
+      <input
+      type="text"
+      name="name"
+      [(ngModel)]="user.name"
+      #name="ngModel"
+      class="form-control"
+      required
+      >
+      <!-- Validaciones -->
+      @if ( (name.dirty || name.touched) && name.invalid)  {
+        @if (name.errors && name.errors['required'])  {
+          <div >
+            <p class="error">*Campo obligatorio</p>
+          </div>
+        }
+      }
+
+    </div>
+
+    <!-- EMAIL -->
+    <div>
+      <label>Email</label>
+      <input
+      type="email"
+      name="email"
+      [(ngModel)]="user.email"
+      class="form-control"
+      #email="ngModel"
+      required
+      email
+      >
+       <!-- Validaciones -->
+      @if ( (email.dirty || email.touched) && email.invalid)  {
+        @if (email.errors && email.errors['required'])  {
+          <div >
+            <p class="error">*Campo obligatorio</p>
+          </div>
+        }
+        @if (email.errors && email.errors['email'])  {
+          <div >
+            <p class="error">*Email incorrecto</p>
+          </div>
+        }
+      }
+    </div>
+
+    <!-- CONTRASEÑA -->
+    <div>
+      <label>Password</label>
+      <input
+      type="password"
+      name="password"
+      [(ngModel)]="user.password"
+      class="form-control"
+      #password="ngModel"
+      required
+      minlength="3"
+      maxlength="10"
+      >
+      <!-- Validaciones -->
+      @if ( (password.dirty || password.touched) && password.invalid)  {
+        @if (password.errors && password.errors['required'])  {
+          <div >
+            <p class="error">*Campo obligatorio</p>
+          </div>
+        }
+        @if (password.errors && password.errors['minlength'])  {
+          <div >
+            <p class="error">*Contraseña muy corta</p>
+          </div>
+        }
+      }
+    </div>
+
+  <button [disabled]="templateForm.invalid" type="submit" >Submit</button>
+</form>

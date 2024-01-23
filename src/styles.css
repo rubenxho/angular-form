@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+/* Variables Globales */
+:root{
+  --primaryColor: #008B73;
+  --secondaryColor: #2f4858d2;
+  --primaryColorShadow: #016454;
+  --fontColor: white;
+}
+
+/* Limpiador */
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
